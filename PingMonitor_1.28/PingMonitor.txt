@@ -1,0 +1,80 @@
+Hey Everyone,
+
+PingMonitor was supposed to be the free version of a piece of 
+software that I was going to call AllMonitor, but it never 
+happened due to library problems. Ah, well.
+
+PingMonitor is still available and still free, however, and 
+it's pretty good stuff.
+
+PingMonitor is a simple asset-monitoring system that works by
+pinging any desired target by IP address or DNS name. It can
+be helpful to do both to troubleshoot DNS issues. Obviously,
+all targets must be configured to return pings.
+
+The nifty GUIs that I'd written for the Windows version of the
+software had to be scrapped, as I couldn't find a Windows-based
+solution for sending email from perl. I also can't find a
+non-Windows solution for running Tkx, the library that makes
+the GUIs possible.
+
+So, I scrapped the GUIs for CLI configuration tools and moved
+the project to Linux / Unix. It will run fine on either provided
+the perl version is sufficient to support the modern thread system
+and sendmail is properly configured.
+
+That last is critical as it's the only way the software has of
+sending email. I've send boatloads of email programmatically, mainly
+from web servers, and it's easy if sendmail works. That, alas, is the
+hard part.
+
+I checked out how to configure it on the web, and decided it's a job
+best left to a Unix / Linux Sysadmin. I'm an administrator in Windows
+land but not Unix / Linux.
+
+Installation is straightforward. Simply copy all files to the desired
+folder, then run fix.pl and fix2.pl. The first one is probably unnecessary
+due to the way Git does things. These programs convert to non-Windows
+carriage returns and remove the file extensions (and add a couple
+otherwise empty folders). You can't hurt anything by running either
+more than once.
+
+PingMonitor divides targets into groups and splits groups into multiple
+pages of the report files. To configure the system you must first use
+the addpage script to add at least one page (you can add more later) and
+then use addgroup to add at least one group. Again, you can add more later.
+
+You are at this point ready to add targets. Please note that you should
+also use the setopt script to set the EmailFrom and EmailSubject options.
+
+Once you have the system configured you will want to start the pingmonitor
+script itself (this is the actual pinging engine) and the report1 tool, which
+creates the reports. Both must be kept running at all times (see the p.s.
+for a way around this).
+
+PingMonitor itself runs at the "top of the minute", in other words at 0
+seconds after the minute, or soon thereafter. The report engine does its
+work at 30 seconds after the minute. Thus, it can take a minute or so
+before you start seeing actual reports.
+
+The report folder can be reconfigured using the setopt script. It can thus
+be relocated to a virtual folder on a web server, if desired.
+
+There is no limit to the number of targets that can be configured. Please
+send bug reports or other feedback to lars@piumasoft.com.
+
+Thanks,
+
+Lars Brandewie  8/23/2020
+
+p.s. If you don't want to keep pingmonitor and report1 running all the
+time, there is a solution. Use the cron engine to call pingmonitor using
+the -once argument. This will cause it to do its thing once and depart.
+Configure it to be run every minute, on the minute.
+
+The reporting engine understands the same parameter, but should be called
+at 30 seconds after the minute.
+
+Be sure to use the -once parameter for both calls or you will have an angry
+sysadmin after you soon...
+

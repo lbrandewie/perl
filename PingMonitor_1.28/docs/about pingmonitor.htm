@@ -1,0 +1,47 @@
+<html>
+<head><title>About PingMonitor</title></head>
+<body background=img/p2900h.jpg>
+
+<table width=800><tr><td>
+
+<h2>PingMonitor by PiumaSoft LLC</h2>
+
+<h3>About PingMonitor</h3>
+
+<p>It has annoyed me for years that there was no freeware asset-monitoring solution. This little piece of software is an attempt to remedy that situation.</p>
+
+<p>The heart of PingMonitor is its multi-threaded pinging engine. It reads the configuration files and pings each target once per minute. It then collects the returned data, optionally logs it, and analyzes it for server up / downness. It then creates data files which are read by the reporting engine.</p>
+
+<p>The reporting engine creates seven reports (so far) per page of data and writes them to the reports folder, which can be relocated by using <a href='setopt.htm'>setopt</a>. Thus it can be placed on a web server, if desired, for centralized viewing.</p>
+
+<p>Admittedly, pinging is not the best way to see if a server or other asset is up. A server can return pings when it's functionally kaput, and can fail to return pings when it's functioning fine. But, it beats nothing
+as an indication of server or asset upness. And, it's free. For a more thorough solution that can test the functionality of different types of servers, see PiumaSoft AllMonitor (coming soon).</p>
+
+<h3>System Requirements</h3>
+
+<p>PingMonitor has been designed to work on CentOS 8. It may be fairly easy to get it to work on other versions of Linux. One requirement, though, is that sendmail must be properly configured. I can't really help with that. In Linux Land, I'm just a programmer. I'm not an administrator. I did do a quick search on configuring sendmail and it looks like linux admin stuff to me.</p>
+
+<h3>Installing the Software</h3>
+
+<p>The software can be run by root or by any administrative user. Root can install it in either /pingmonitor or /root/pingmonitor. Other users should install it in /home/username/pingmonitor.</p>
+
+<p>In either case, just copy the files and folders from the zip file you downloaded to the appropriate folder. Then run fix.pl and fix2.pl. These utilities convert the software from windows to unix format, and rename the scripts so they don't have the .pl extension. You can't hurt anything by running either program more than once. You will need to manually change the permissions of the scripts (in the scripts folder) so they can be executed.</p>
+
+<h3>Working with the Software</h3>
+
+<p>The software allows you to define targets to be pinged, groups to divide them up into, and pages with which to divide up the groups. At least one page and one group must be defined before you can add targets. Since a group must be assigned to a page, and the page must already exist, your first task is to set up at least one page. Use <a href='addpage.htm'>addpage</a> to do that.</p>
+
+<p>You will then want to use <a href='addgroup.htm'>addgroup</a> to add a group or two. Then you can use <a href='addtarget.htm'>addtarget</a> to add targets to be pinged.</p>
+
+<p>At this point you will want to ensure that pingmonitor and report1 are running. Both programs react dynamically to changes in the target, page and group files. Optionally, you can configure the programs to be run by the cron engine.</p>
+
+<p>If so, be sure to set pingmonitor to run every minute at 0 seconds after the minute. Set report1 to run at 30 seconds after the minute, again every minute. Also be sure to use the -once argument on each program, which causes them to do their thing once and then exit. Otherwise, angry sysadmins will be after you pretty soon.</p>
+
+<p>Note: If you are viewing the reports and get a File Not Found error from your browser, just reload the page. The automatic reload must have happened while the file was being written.</p>
+
+<p>Also note: the software creates many files, and if many targets are configured disk space could conceivably become an issue. The log files are the largest files in the system, so if this is an issue for you, just turn off logging for all groups and delete the files in the logs folder. They are not needed by the reporting engine but are kept for analysis only.</p>
+
+<p align=center><a href=index.htm>Table of Contents</a></p>
+
+</td></tr></table>
+</body></html>

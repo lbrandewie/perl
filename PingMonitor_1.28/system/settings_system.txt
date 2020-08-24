@@ -1,0 +1,7 @@
+EmailFrom = 
+EmailSquelchMin = 10
+EmailSubject = Asset Down
+GroupNum = 0
+PageNum = 0
+ReportFolder = ../reports
+TargetNum = 0

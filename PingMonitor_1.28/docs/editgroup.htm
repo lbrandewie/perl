@@ -1,0 +1,27 @@
+<html>
+<head><title>editgroup</title></head>
+<body background=img/p2900h.jpg>
+
+<table width=800><tr><td>
+
+<h2>PingMonitor by PiumaSoft LLC</h2>
+
+<h3>editgroup</h3>
+
+<p>The editgroup program edits an entry in groups.txt in the system folder. It requires multiple arguments to get anything useful done.</p>
+
+<p>The first argument must be the id of the group you want to edit. This is a string which starts with a g and continues with numbers.</p>
+
+<p>The remainder of the arguments are pairs, the first of which specifies an option and the second of which specifies the new value for that option.</p>
+
+<p>In short, the syntax looks like:</p>
+
+<code>./editgroup [id] -n [new name] -ping [ping setting] -l [log setting] -page [page assignment] -e [responsible person's email]</code>
+
+<p>Be sure to put quotes around any arguments (name, page) that contain spaces. The ping and log settings may only be 0 or 1. 0 turns off pinging or logging while 1 turns it on.</p>
+
+<p>Changing the name of a group also causes all target references to it in targets.txt to change. If you change the page assignment, the new page must already exist.</p>
+
+<p align='center'><a href='index.htm'>Table of Contents</a></p>
+
+</table></body></html>
